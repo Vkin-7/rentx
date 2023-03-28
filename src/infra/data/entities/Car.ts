@@ -1,7 +1,8 @@
-import { Column, JoinColumn, ManyToOne } from 'typeorm';
+import { Column, Entity, JoinColumn, ManyToOne } from 'typeorm';
 import { BaseEntity } from './abstracts/BaseEntity';
 import { Category } from './Category';
 
+@Entity('car')
 export class Car extends BaseEntity {
     @Column('varchar')
     public name: string;
@@ -9,7 +10,7 @@ export class Car extends BaseEntity {
     @Column('varchar')
     public description: string;
 
-    @Column('number')
+    @Column('decimal')
     public daily_rate: number;
 
     @Column('boolean')
@@ -18,8 +19,8 @@ export class Car extends BaseEntity {
     @Column('varchar')
     public license_plate: string;
 
-    @Column('number')
-    public fine_amount: number;
+    @Column('decimal')
+    public final_amount: number;
 
     @Column('varchar')
     public brand: string;
@@ -36,7 +37,7 @@ export class Car extends BaseEntity {
         _description: string,
         _daily_rate: number,
         _license_plate: string,
-        _fine_amount: number,
+        _final_amount: number,
         _brand: string,
         _category_id: string,
         // _available?: boolean,
@@ -50,7 +51,7 @@ export class Car extends BaseEntity {
         this.description = _description;
         this.daily_rate = _daily_rate;
         this.license_plate = _license_plate;
-        this.fine_amount = _fine_amount;
+        this.final_amount = _final_amount;
         this.brand = _brand;
         this.category_id = _category_id;
 

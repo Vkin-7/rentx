@@ -18,7 +18,7 @@ export class CarsRepository implements ICarsRepository {
             data.description,
             data.daily_rate,
             data.license_plate,
-            data.fine_amount,
+            data.final_amount,
             data.brand, 
             data.category_id,
         );
