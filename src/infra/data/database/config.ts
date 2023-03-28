@@ -1,6 +1,3 @@
-import { Category } from '@Infra/data/entities/Category';
-import { Specification } from '@Infra/data/entities/Specification';
-import { User } from '@Infra/data/entities/User';
 import { DataSource } from 'typeorm';
 
 export const AppDataSource = new DataSource({
@@ -12,11 +9,7 @@ export const AppDataSource = new DataSource({
     database: 'rentx',
     synchronize: false,
     logging: false,
-    entities: [
-        Category,
-        Specification,
-        User
-    ],
+    entities: ['./src/infra/data/entities/**/*.ts'],
     subscribers: [],
     migrations: ['./src/infra/data/database/migrations/*.ts']
 });
