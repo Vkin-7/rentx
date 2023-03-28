@@ -2,7 +2,7 @@ import { ICreateCategoryDTO } from '@DTO/category/ICreateCategoryDTO';
 import { ICategoriesRepository } from './interfaces/ICategoriesRepository';
 import { Category } from '@Infra/data/entities/Category';
 import { Repository } from 'typeorm';
-import { AppDataSource } from '@Infra/data/database/typeorm';
+import { AppDataSource } from '@Infra/data/database/config';
 
 export class CategoriesRepository implements ICategoriesRepository {
     private repository: Repository<Category>;
@@ -27,8 +27,6 @@ export class CategoriesRepository implements ICategoriesRepository {
     }
 
     async getByName(name: string): Promise<Category | null> {
-        const category = await this.repository.findOneBy({ name });
-
-        return category;
+        return await this.repository.findOneBy({ name });
     } 
 }

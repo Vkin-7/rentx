@@ -1,7 +1,7 @@
 import { ICreateSpecificationDTO } from '@DTO/specification/ICreateSpecificationDTO';
 import { ISpecificationsRepository } from './interfaces/ISpecificationsRepository';
 import { Specification } from '@Infra/data/entities/Specification';
-import { AppDataSource } from '@Infra/data/database/typeorm';
+import { AppDataSource } from '@Infra/data/database/config';
 import { Repository } from 'typeorm';
 
 export class SpecificationsRepository implements ISpecificationsRepository {
