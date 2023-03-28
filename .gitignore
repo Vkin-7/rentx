@@ -1,4 +1,15 @@
-node_modules
-.vscode
-tmp
+# Enviroment
 .env
+
+# IDE
+.vscode
+
+# Temporary data
+tmp
+
+# Tests
+coverage
+
+# Compile
+node_modules
+dist
