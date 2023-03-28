@@ -19,7 +19,7 @@ describe('Create Car', () => {
             description: 'car description',
             daily_rate: 100,
             license_plate: 'ABC-1234',
-            fine_amount: 60,
+            final_amount: 60,
             brand: 'car brand',
             category_id: 'category'
         });
@@ -34,7 +34,7 @@ describe('Create Car', () => {
                 description: 'car description',
                 daily_rate: 100,
                 license_plate: 'ABC-1234',
-                fine_amount: 60,
+                final_amount: 60,
                 brand: 'car brand',
                 category_id: 'category'
             });
@@ -44,7 +44,7 @@ describe('Create Car', () => {
                 description: 'car description',
                 daily_rate: 100,
                 license_plate: 'ABC-1234',
-                fine_amount: 60,
+                final_amount: 60,
                 brand: 'car brand',
                 category_id: 'category'
             });
@@ -57,7 +57,7 @@ describe('Create Car', () => {
             description: 'car description',
             daily_rate: 100,
             license_plate: 'ABC-1234',
-            fine_amount: 60,
+            final_amount: 60,
             brand: 'car brand',
             category_id: 'category',
         });
