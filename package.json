@@ -10,13 +10,14 @@
     "test": "jest",
     "coverage": "vitest run --coverage",
     "typeorm": "tsx ./node_modules/typeorm/cli",
-    "typeorm-migrate": "tsx ./node_modules/typeorm/cli migration:run -d src/infra/data/database/config",
-    "typeorm-migrate-revert": "tsx ./node_modules/typeorm/cli migration:revert -d src/infra/data/database/config",
+    "typeorm-migrate": "tsx ./node_modules/typeorm/cli migration:run -d src/infra/data/database/data-source",
+    "typeorm-migrate-revert": "tsx ./node_modules/typeorm/cli migration:revert -d src/infra/data/database/data-source",
     "start:build": "node build/server.js",
     "docker-up": "docker-compose up",
     "docker-up:background": "docker-compose up -D",
     "docker-start": "docker-compose start",
-    "docker-stop": "docker-compose stop"
+    "docker-stop": "docker-compose stop",
+    "seed": "tsx ./node_modules/typeorm-extension/dist/cli/index.js seed -d ./src/infra/data/database/data-source.ts"
   },
   "keywords": [],
   "author": "",
@@ -34,7 +35,8 @@
     "reflect-metadata": "^0.1.13",
     "swagger-ui-express": "^4.6.0",
     "tsyringe": "^4.7.0",
-    "typeorm": "^0.3.12"
+    "typeorm": "^0.3.12",
+    "typeorm-extension": "^2.6.2"
   },
   "devDependencies": {
     "@types/express": "^4.17.16",

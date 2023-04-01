@@ -1,7 +1,7 @@
 import { Column, Entity } from 'typeorm';
 import { BaseEntity } from './abstracts/BaseEntity';
 
-@Entity()
+@Entity('category')
 export class Category extends BaseEntity {
     @Column('text')
     public name: string;

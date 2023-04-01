@@ -2,7 +2,7 @@ import { ICreateCategoryDTO } from '@DTO/category/ICreateCategoryDTO';
 import { ICategoriesRepository } from './interfaces/ICategoriesRepository';
 import { Category } from '@Infra/data/entities/Category';
 import { Repository } from 'typeorm';
-import { AppDataSource } from '@Infra/data/database/config';
+import { AppDataSource } from '@Infra/data/database/data-source';
 
 export class CategoriesRepository implements ICategoriesRepository {
     private repository: Repository<Category>;
