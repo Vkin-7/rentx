@@ -28,6 +28,8 @@ import { IAuthProvider } from './providers/interfaces/IAuthProvider';
 import { IEnsureAuthenticated } from '@Infra/http/middlewares/interfaces/IEnsureAuthenticated';
 import { EnsureAuthenticated } from '@Infra/http/middlewares/ensureAuthenticated';
 
+import { IEnsureAdmin } from '@Infra/http/middlewares/interfaces/IEnsureAdmin';
+import { EnsureAdmin } from '@Infra/http/middlewares/ensureAdmin';
 
 
 
@@ -72,6 +74,12 @@ container.registerSingleton<IHashProvider>(
 container.registerSingleton<IEnsureAuthenticated>(
     'EnsureAuthenticated',
     EnsureAuthenticated
+);
+
+// ADMIN
+container.registerSingleton<IEnsureAdmin>(
+    'EnsureAdmin',
+    EnsureAdmin
 );
 
 // Utils

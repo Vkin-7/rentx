@@ -15,7 +15,7 @@ export class User extends BaseEntity {
     @Column('text')
     public driver_license: string;
 
-    @Column('boolean')
+    @Column('bool')
     public isAdmin: boolean;
 
     @Column('text')
