@@ -1,3 +1,5 @@
+import 'reflect-metadata';
+
 import { ListAvailableCarsUseCase } from '@Application/useCases/car/listAvailableCarsUseCase';
 import { CarsRepositoryInMemory } from '@Tests/infra/data/repositories/in-memory/carsRepositoryInMemory';
 

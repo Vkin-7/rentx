@@ -16,11 +16,11 @@ export class CategoriesRepositoryInMemory implements ICategoriesRepository {
         return this.categories.includes(category);
     }
 
-    async getAll(): Promise<Category[]> {
+    async findAll(): Promise<Category[]> {
         return this.categories;
     }
 
-    async getByName(name: string): Promise<Category | null> {
+    async findByName(name: string): Promise<Category | null> {
         return this.categories.find(category => category.name === name) || null;
     }
 

@@ -5,6 +5,10 @@ import { ICarsRepository } from '@Infra/data/repositories/interfaces/ICarsReposi
 export class CarsRepositoryInMemory implements ICarsRepository {
     private cars: Car[] = [];
     
+    async findById(id: string): Promise<Car | null> {
+        return this.cars.find(x => x.id === id) || null;
+    }
+
     async findByLicensePlate(license_plate: string): Promise<Car | null> {
         return this.cars.find(x => x.license_plate === license_plate) || null;
     }
@@ -17,7 +21,9 @@ export class CarsRepositoryInMemory implements ICarsRepository {
             data.license_plate,
             data.final_amount,
             data.brand,
-            data.category_id
+            data.category_id,
+            new Date(),
+            data.id
         );
 
         this.cars.push(car);
