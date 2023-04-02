@@ -22,11 +22,11 @@ export class CategoriesRepository implements ICategoriesRepository {
         return result !== null;
     }
 
-    async getAll(): Promise<Category[]> {
+    async findAll(): Promise<Category[]> {
         return await this.repository.find();
     }
 
-    async getByName(name: string): Promise<Category | null> {
+    async findByName(name: string): Promise<Category | null> {
         return await this.repository.findOneBy({ name });
     } 
 }

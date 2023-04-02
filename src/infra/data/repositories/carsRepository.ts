@@ -12,16 +12,13 @@ export class CarsRepository implements ICarsRepository {
     }
 
     async create(data: ICreateCarDTO): Promise<Car> {
-        const car = new Car(
-            data.name,
-            data.description,
-            data.daily_rate,
-            data.license_plate,
-            data.final_amount,
-            data.brand, 
-            data.category_id,
-        );
+        const car =  this.repository.create({ ...data });
+
         return await this.repository.save(car);
+    }
+
+    async findById(id: string): Promise<Car | null> {
+        return await this.repository.findOneBy({ id });
     }
 
     async findByLicensePlate(license_plate: string): Promise<Car | null> {

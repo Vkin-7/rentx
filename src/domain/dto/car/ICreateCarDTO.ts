@@ -1,3 +1,5 @@
+import { Specification } from '@Entities/Specification';
+
 export interface ICreateCarDTO {
     name: string,
     description: string,
@@ -6,4 +8,6 @@ export interface ICreateCarDTO {
     final_amount: number;
     brand: string;
     category_id: string;
+    specifications?: Specification[];
+    id?: string;
 }

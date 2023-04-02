@@ -3,6 +3,7 @@ import { Car } from '@Entities/Car';
 
 export interface ICarsRepository {
     create(data: ICreateCarDTO): Promise<Car>;
+    findById(id: string): Promise<Car | null>;
     findByLicensePlate(license_plate: string): Promise<Car | null>;
     findAvailable(
         brand?: string, 

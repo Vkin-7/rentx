@@ -13,7 +13,7 @@ export class CreateSpecificationUseCase {
     ) {}
 
     async execute(data: ICreateSpecificationDTO) {
-        const specificationAlreadyExist = await this.specificationsRepository.getByName(data.name);
+        const specificationAlreadyExist = await this.specificationsRepository.findByName(data.name);
 
         if (specificationAlreadyExist) {
             throw new AppError('Specification already exists!');

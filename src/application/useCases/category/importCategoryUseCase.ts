@@ -44,7 +44,7 @@ export class ImportCategoryUseCase {
         const categories = await this.loadCategories(file);
 
         categories.map(async category => {
-            const categoryAlreadyExist = await this.categoryRepository.getByName(category.name);
+            const categoryAlreadyExist = await this.categoryRepository.findByName(category.name);
 
             if (!categoryAlreadyExist) {
                 await this.categoryRepository.create({ ...category });

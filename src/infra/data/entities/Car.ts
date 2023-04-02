@@ -1,6 +1,7 @@
-import { Column, Entity, JoinColumn, ManyToOne } from 'typeorm';
+import { Column, Entity, JoinColumn, JoinTable, ManyToMany, ManyToOne } from 'typeorm';
 import { BaseEntity } from './abstracts/BaseEntity';
 import { Category } from './Category';
+import { Specification } from './Specification';
 
 @Entity('car')
 export class Car extends BaseEntity {
@@ -31,6 +32,14 @@ export class Car extends BaseEntity {
     @ManyToOne(() => Category)
     @JoinColumn({ name: 'category_id' })
     public category!: Category;
+
+    @ManyToMany(() => Specification)
+    @JoinTable({
+        name: 'specification_car',
+        joinColumns: [{ name: 'car_id' }],
+        inverseJoinColumns: [{ name: 'specification_id' }]
+    })
+    public specifications!: Specification[];
 
     constructor(
         _name: string, 

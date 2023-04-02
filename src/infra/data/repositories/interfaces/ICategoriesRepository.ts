@@ -3,6 +3,6 @@ import { Category } from '@Infra/data/entities/Category';
 
 export interface ICategoriesRepository {
     create(data: ICreateCategoryDTO): Promise<boolean>;
-    getAll(): Promise<Category[]>;
-    getByName(name: string): Promise<Category | null>;
+    findAll(): Promise<Category[]>;
+    findByName(name: string): Promise<Category | null>;
 } 

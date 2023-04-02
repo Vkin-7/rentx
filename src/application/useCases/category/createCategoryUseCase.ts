@@ -12,7 +12,7 @@ export class CreateCategoryUseCase {
     ) {}
 
     async execute(data: ICreateCategoryDTO): Promise<boolean> {
-        const categoryAlreadyExist = await this.categoryRepository.getByName(data.name);
+        const categoryAlreadyExist = await this.categoryRepository.findByName(data.name);
 
         if (categoryAlreadyExist) {
             throw new AppError('Category already exists!');
