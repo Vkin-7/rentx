@@ -5,7 +5,7 @@ import { MainSeeder } from './seeds/MainSeeder';
 
 const options: DataSourceOptions & SeederOptions = {
     type: 'postgres',
-    host: 'database_ignite',
+    host: 'localhost',
     port: 5432,
     username: 'docker',
     password: 'ignite',
