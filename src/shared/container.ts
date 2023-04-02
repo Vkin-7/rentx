@@ -14,6 +14,10 @@ import { ICarsRepository } from '@Infra/data/repositories/interfaces/ICarsReposi
 import { CarsRepository } from '@Infra/data/repositories/carsRepository';
 
 
+import { ICarImageRepository } from '@Infra/data/repositories/interfaces/ICarImageRepository';
+import { CarImageRepository } from '@Infra/data/repositories/carImageRepository';
+
+
 
 
 import { HashProvider } from './providers/hashProvider';
@@ -54,6 +58,11 @@ container.registerSingleton<IUsersRepository>(
 container.registerSingleton<ICarsRepository>(
     'CarsRepository',
     CarsRepository
+);
+
+container.registerSingleton<ICarImageRepository>(
+    'CarImageRepository',
+    CarImageRepository
 );
 
 
