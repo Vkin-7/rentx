@@ -1,9 +1,12 @@
 import { IListCarsDTO } from '@DTO/car/IListCarsDTO';
 import { Car } from '@Entities/Car';
 import { ICarsRepository } from '@Infra/data/repositories/interfaces/ICarsRepository';
+import { inject, injectable } from 'tsyringe';
 
-export class ListCarsUseCase {
+@injectable()
+export class ListAvailableCarsUseCase {
     constructor(
+        @inject('CarsRepository')
         private carsRepository: ICarsRepository
     ){}
     async execute(data?: IListCarsDTO): Promise<Car[]> {

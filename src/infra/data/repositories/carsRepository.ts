@@ -10,11 +10,6 @@ export class CarsRepository implements ICarsRepository {
     constructor() {
         this.repository = AppDataSource.getRepository(Car);
     }
-    
-    async findAvailable(): Promise<Car[]> {
-        return await this.repository.findBy({ available: true });
-    }
-
 
     async create(data: ICreateCarDTO): Promise<Car> {
         const car = new Car(
@@ -31,6 +26,30 @@ export class CarsRepository implements ICarsRepository {
 
     async findByLicensePlate(license_plate: string): Promise<Car | null> {
         return await this.repository.findOneBy({ license_plate });
+    }
+
+    async findAvailable(
+        brand?: string, 
+        category_id?: string, 
+        name?: string
+    ): Promise<Car[]> {
+
+        const carsQuery = await this.repository
+            .createQueryBuilder('c')
+            .where('available = :available', { available: true });
+
+        const filter = (brand && 'brand') || (category_id && 'category_id') || (name && 'name'); 
+
+        if (filter) {
+            const filters = {
+                brand, category_id, name
+            };
+    
+            carsQuery.andWhere(`c.${filter} = :filter`, { filter: filters[filter] });
+        }
+
+
+        return await carsQuery.getMany();
     }
 
 }
