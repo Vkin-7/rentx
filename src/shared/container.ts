@@ -17,6 +17,8 @@ import { CarsRepository } from '@Infra/data/repositories/carsRepository';
 import { ICarImageRepository } from '@Infra/data/repositories/interfaces/ICarImageRepository';
 import { CarImageRepository } from '@Infra/data/repositories/carImageRepository';
 
+import { IRentalsRepository } from '@Infra/data/repositories/interfaces/IRentalsRepository';
+import { RentalsRepository } from '@Infra/data/repositories/rentalsRepository';
 
 
 
@@ -26,6 +28,8 @@ import { IHashProvider } from './providers/interfaces/IHashProvider';
 import { AuthProvider } from './providers/authProvider';
 import { IAuthProvider } from './providers/interfaces/IAuthProvider';
 
+import { IDateProvider } from './providers/interfaces/IDateProvider';
+import { DateProvider } from './providers/dateProvider';
 
 
 
@@ -38,6 +42,7 @@ import { EnsureAdmin } from '@Infra/http/middlewares/ensureAdmin';
 
 
 import { InternalFile } from './utils/file';
+
 
 //REPOSITORIES
 container.registerSingleton<ICategoriesRepository>(
@@ -65,6 +70,11 @@ container.registerSingleton<ICarImageRepository>(
     CarImageRepository
 );
 
+container.registerSingleton<IRentalsRepository>(
+    'RentalsRepository',
+    RentalsRepository
+);
+
 
 // PROVIDERS
 container.registerSingleton<IAuthProvider>(
@@ -75,6 +85,11 @@ container.registerSingleton<IAuthProvider>(
 container.registerSingleton<IHashProvider>(
     'HashProvider',
     HashProvider
+);
+
+container.registerSingleton<IDateProvider>(
+    'DateProvider',
+    DateProvider
 );
 
 

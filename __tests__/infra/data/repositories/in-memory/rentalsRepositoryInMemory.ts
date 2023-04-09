@@ -1,8 +1,8 @@
 import { ICreateRentalDTO } from '@DTO/rental/ICreateRentalDTO';
 import { Rental } from '@Entities/Rental';
-import { IRentalRepository } from '@Repositories/interfaces/IRentalRepository';
+import { IRentalsRepository } from '@Repositories/interfaces/IRentalsRepository';
 
-export class RentalRepositoryInMemory implements IRentalRepository {
+export class RentalsRepositoryInMemory implements IRentalsRepository {
     private rentals: Rental[] = [];
     
     async findOpenRentalByCar(car_id: string): Promise<Rental | null> {

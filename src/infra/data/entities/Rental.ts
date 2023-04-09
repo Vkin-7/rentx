@@ -1,19 +1,28 @@
+import { Column, Entity } from 'typeorm';
 import { BaseEntity } from './abstracts/BaseEntity';
 
+@Entity('rental')
 export class Rental extends BaseEntity {
 
+    @Column('uuid')
     public car_id: string;
 
+    @Column('uuid')
     public user_id: string;
 
+    @Column('timestamp')
     public expected_return_date: Date;
 
+    @Column('timestamp')
     public start_date: Date;
     
+    @Column('timestamp')
     public end_date?: Date;
     
+    @Column('numeric')
     public total: number;
     
+    @Column('timestamp')
     public updated_at?: Date;
 
     constructor(

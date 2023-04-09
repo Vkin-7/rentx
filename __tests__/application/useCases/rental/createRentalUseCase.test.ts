@@ -1,11 +1,13 @@
+import 'reflect-metadata';
+
 import dayjs from 'dayjs';
 
 import { CreateRentalUseCase } from '@Application/useCases/rental/createRentalUseCase';
 import { AppError } from '@Shared/errors/AppError';
 import { DateProvider } from '@Shared/providers/dateProvider';
-import { RentalRepositoryInMemory } from '@Tests/infra/data/repositories/in-memory/rentalRepositoryInMemory';
+import { RentalsRepositoryInMemory } from '@Tests/infra/data/repositories/in-memory/rentalsRepositoryInMemory';
 
-let rentalRepositoryInMemory: RentalRepositoryInMemory;
+let rentalsRepositoryInMemory: RentalsRepositoryInMemory;
 let dateProvider: DateProvider;
 let createRentalUseCase: CreateRentalUseCase;
 
@@ -13,11 +15,11 @@ describe('Create Rental', () => {
     const tomorrow =  dayjs().add(1, 'day').toDate(); 
 
     beforeEach(() => {
-        rentalRepositoryInMemory = new RentalRepositoryInMemory();
+        rentalsRepositoryInMemory = new RentalsRepositoryInMemory();
         dateProvider = new DateProvider();
         createRentalUseCase = new CreateRentalUseCase(
             dateProvider,
-            rentalRepositoryInMemory
+            rentalsRepositoryInMemory
         );
     });
 

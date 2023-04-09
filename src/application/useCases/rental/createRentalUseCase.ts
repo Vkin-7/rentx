@@ -1,15 +1,19 @@
 import { ICreateRentalDTO } from '@DTO/rental/ICreateRentalDTO';
 import { Rental } from '@Entities/Rental';
-import { IRentalRepository } from '@Infra/data/repositories/interfaces/IRentalRepository';
+import { IRentalsRepository } from '@Infra/data/repositories/interfaces/IRentalsRepository';
 import { AppError } from '@Shared/errors/AppError';
 import { IDateProvider } from '@Shared/providers/interfaces/IDateProvider';
+import { inject, injectable } from 'tsyringe';
 
+@injectable()
 export class CreateRentalUseCase {
     private MINIMUM_HOUR_TO_RENT = 24;
 
     constructor(
+        @inject('DateProvider')
         private dateProvider: IDateProvider,
-        private rentalRepository: IRentalRepository
+        @inject('RentalsRepository')
+        private rentalsRepository: IRentalsRepository
     ){}
 
     async execute(data: ICreateRentalDTO): Promise<Rental> {
@@ -19,13 +23,13 @@ export class CreateRentalUseCase {
             expected_return_date
         } = data;
 
-        const carUnavailable = await this.rentalRepository.findOpenRentalByCar(car_id);
+        const carUnavailable = await this.rentalsRepository.findOpenRentalByCar(car_id);
 
         if (carUnavailable) {
             throw new AppError('Car is unavailable');
         }
 
-        const rentalOpenToUser = await this.rentalRepository.findOpenRentalByUser(user_id);
+        const rentalOpenToUser = await this.rentalsRepository.findOpenRentalByUser(user_id);
 
         if (rentalOpenToUser) {
             throw new AppError('There`s a rental in progress for user!');
@@ -41,7 +45,7 @@ export class CreateRentalUseCase {
         }
         
 
-        const rental = await this.rentalRepository.create({
+        const rental = await this.rentalsRepository.create({
             user_id,
             car_id,
             expected_return_date
