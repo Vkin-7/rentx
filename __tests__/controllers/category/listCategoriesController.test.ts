@@ -42,8 +42,8 @@ describe('Create category controller', () => {
         await dataSource.dropDatabase();
     });
 
-    it('Should be able to create a new category', async () => {
-        const response = await request(app)
+    it('Should be able to list all categories', async () => {
+        await request(app)
             .post('/categories')
             .send({
                 name: 'Category supertest',
@@ -52,22 +52,11 @@ describe('Create category controller', () => {
             .set({
                 Authorization: `Bearer ${token}` 
             });
+        
+        const response = await request(app).get('/categories');
+        
 
-        expect(response.status).toBe(201);
-    });
-
-
-    it('Should not be able to create a new category with name exists', async () => {
-        const response = await request(app)
-            .post('/categories')
-            .send({
-                name: 'Category supertest',
-                description: 'Category supertest'
-            })
-            .set({
-                Authorization: `Bearer ${token}` 
-            });
-
-        expect(response.status).toBe(400);
+        expect(response.status).toBe(200);
+        expect(response.body.length).toBe(1);
     });
 });
