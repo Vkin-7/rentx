@@ -36,7 +36,6 @@ export class EnsureAuthenticated implements IEnsureAuthenticated {
 
             next();
         } catch (error) {
-            console.error(error);
             throw new AppError('Error in authentication', StatusCode.UNAUTHORIZED);
         }
 

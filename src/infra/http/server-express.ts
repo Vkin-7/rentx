@@ -7,20 +7,23 @@ import { ErrorMiddleware } from '@Infra/http/middlewares/error';
 
 export class Server {
     private port = process.env.PORT || 3333;
+    public app = express();
 
     start() {
         const database = new Database();
         const errorMiddleware = new ErrorMiddleware();
         database.createConnection();
 
-        const app = express();
-
-        app.use(express.json());
+        this.app.use(express.json());
 	
-        app.use(router);
+        this.app.use(router);
 
-        app.use(errorMiddleware.handle);
+        this.app.use(errorMiddleware.handle);
 	
-        app.listen(this.port);
+        this.app.listen(this.port);
+    }
+
+    getApp() {
+        return this.app;
     }
 }

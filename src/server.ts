@@ -8,4 +8,6 @@ dotenv.config();
 
 const server = new Server();
 
+export const app = server.getApp();
+
 server.start();

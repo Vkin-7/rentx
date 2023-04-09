@@ -5,6 +5,7 @@ import { inject, injectable } from 'tsyringe';
 
 import { ICategoriesRepository } from '@Repositories/interfaces/ICategoriesRepository';
 import { ICreateCategoryDTO } from '@DTO/category/ICreateCategoryDTO';
+import { AppError } from '@Shared/errors/AppError';
 
 
 @injectable()
@@ -49,7 +50,7 @@ export class ImportCategoryUseCase {
             if (!categoryAlreadyExist) {
                 await this.categoryRepository.create({ ...category });
             } else {
-                console.error(`Category with name: ${category.name}, already exists!`);
+                throw new AppError(`Category with name: ${category.name}, already exists!`);
             }
         });
 
