@@ -1,5 +1,6 @@
 import { ICreateRentalDTO } from '@DTO/rental/ICreateRentalDTO';
 import { Rental } from '@Entities/Rental';
+import { ICarsRepository } from '@Infra/data/repositories/interfaces/ICarsRepository';
 import { IRentalsRepository } from '@Infra/data/repositories/interfaces/IRentalsRepository';
 import { AppError } from '@Shared/errors/AppError';
 import { IDateProvider } from '@Shared/providers/interfaces/IDateProvider';
@@ -13,7 +14,9 @@ export class CreateRentalUseCase {
         @inject('DateProvider')
         private dateProvider: IDateProvider,
         @inject('RentalsRepository')
-        private rentalsRepository: IRentalsRepository
+        private rentalsRepository: IRentalsRepository,
+        @inject('CarsRepository')
+        private carsRepository: ICarsRepository
     ){}
 
     async execute(data: ICreateRentalDTO): Promise<Rental> {
@@ -50,6 +53,8 @@ export class CreateRentalUseCase {
             car_id,
             expected_return_date
         });
+
+        await this.carsRepository.updateAvailable(car_id, false);
 
         return rental;
     }

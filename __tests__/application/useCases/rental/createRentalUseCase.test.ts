@@ -6,8 +6,10 @@ import { CreateRentalUseCase } from '@Application/useCases/rental/createRentalUs
 import { AppError } from '@Shared/errors/AppError';
 import { DateProvider } from '@Shared/providers/dateProvider';
 import { RentalsRepositoryInMemory } from '@Tests/infra/data/repositories/in-memory/rentalsRepositoryInMemory';
+import { CarsRepositoryInMemory } from '@Tests/infra/data/repositories/in-memory/carsRepositoryInMemory';
 
 let rentalsRepositoryInMemory: RentalsRepositoryInMemory;
+let carsRepositoryInMemory: CarsRepositoryInMemory;
 let dateProvider: DateProvider;
 let createRentalUseCase: CreateRentalUseCase;
 
@@ -16,10 +18,13 @@ describe('Create Rental', () => {
 
     beforeEach(() => {
         rentalsRepositoryInMemory = new RentalsRepositoryInMemory();
+        carsRepositoryInMemory =  new CarsRepositoryInMemory();
         dateProvider = new DateProvider();
+
         createRentalUseCase = new CreateRentalUseCase(
             dateProvider,
-            rentalsRepositoryInMemory
+            rentalsRepositoryInMemory,
+            carsRepositoryInMemory
         );
     });
 
