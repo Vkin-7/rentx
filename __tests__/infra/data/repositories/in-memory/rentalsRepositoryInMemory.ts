@@ -5,6 +5,10 @@ import { IRentalsRepository } from '@Repositories/interfaces/IRentalsRepository'
 export class RentalsRepositoryInMemory implements IRentalsRepository {
     private rentals: Rental[] = [];
     
+    async findById(id: string): Promise<Rental | null> {
+        return this.rentals.find(rental => rental.id === id) || null;
+    }
+
     async findOpenRentalByCar(car_id: string): Promise<Rental | null> {
         return this.rentals.find(rental => rental.car_id === car_id && !rental.end_date) || null;
     }
