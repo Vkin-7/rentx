@@ -22,17 +22,16 @@ export class DevolutionRentalUseCase {
     private MINIMUN_DAILY = 1;
 
     async execute({ id, user_id }: IDevolutionRental): Promise<Rental> {
-        const rentalTask = this.rentalsRepository.findById(id);
-        const carTask = this.carsRepository.findById(id);
+        const rental = await this.rentalsRepository.findById(id);
 
-        const [ rental, car ] = await Promise.all([
-            rentalTask, 
-            carTask
-        ]);
+        if (!rental || rental.end_date) {
+            throw new AppError('Rental does not exists or already terminated!');
+        }
 
+        const car = await this.carsRepository.findById(rental.car_id);
 
-        if (!rental) {
-            throw new AppError('Rental does not exists!');
+        if (!car) {
+            throw new AppError('Car does not exists');
         }
 
 
@@ -46,7 +45,7 @@ export class DevolutionRentalUseCase {
 
         await Promise.all([
             this.rentalsRepository.create(rental),
-            this.carsRepository.updateAvailable(id, true)
+            this.carsRepository.updateAvailable(car.id, true)
         ]);
 
         return rental;
