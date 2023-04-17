@@ -9,6 +9,10 @@ export class RentalsRepositoryInMemory implements IRentalsRepository {
         return this.rentals.find(rental => rental.id === id) || null;
     }
 
+    async findByUserId(user_id: string): Promise<Rental[]> {
+        return this.rentals.filter(rental => rental.user_id === user_id);
+    }
+
     async findOpenRentalByCar(car_id: string): Promise<Rental | null> {
         return this.rentals.find(rental => rental.car_id === car_id && !rental.end_date) || null;
     }

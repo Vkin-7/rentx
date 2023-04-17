@@ -16,6 +16,13 @@ export class RentalsRepository implements IRentalsRepository {
         return await this.repository.findOneBy({ id });
     }
 
+    async findByUserId(user_id: string): Promise<Rental[]> {
+        return await this.repository.find({
+            where: { user_id },
+            relations: ['car']
+        });
+    }
+
     async findOpenRentalByCar(car_id: string): Promise<Rental | null> {
         return await this.repository.findOneBy({ car_id, end_date: IsNull() });
     }

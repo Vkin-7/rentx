@@ -1,8 +1,13 @@
-import { Column, Entity } from 'typeorm';
+import { Column, Entity, JoinColumn, ManyToOne } from 'typeorm';
 import { BaseEntity } from './abstracts/BaseEntity';
+import { Car } from './Car';
 
 @Entity('rental')
 export class Rental extends BaseEntity {
+
+    @ManyToOne(() => Car)
+    @JoinColumn({ name: 'car_id' })
+    public car!: Car;
 
     @Column('uuid')
     public car_id: string;
