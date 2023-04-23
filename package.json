@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "tsx watch --inspect src/server.ts",
     "build": "tsc",
-    "test": "NODE_ENV=development jest",
+    "test": "NODE_ENV=development jest --runInBand --detectOpenHandles",
     "coverage": "vitest run --coverage",
     "typeorm": "tsx ./node_modules/typeorm/cli",
     "typeorm-migrate": "tsx ./node_modules/typeorm/cli migration:run -d src/infra/data/database/data-source",
