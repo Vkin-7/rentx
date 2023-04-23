@@ -3,6 +3,7 @@ declare namespace NodeJS {
     interface ProcessEnv {
         NODE_ENV: 'development' | 'production';
         PORT: string;
-        JWT_KEY: string;
+        TOKEN_JWT_KEY: string;
+        REFRESH_TOKEN_JWT_KEY: string;
     }
 }

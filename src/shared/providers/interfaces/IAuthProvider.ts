@@ -5,4 +5,8 @@ export interface IAuthProvider {
         payload: string | object | Buffer, 
         options: SignOptions | undefined
     ): string;
+    generateRefreshToken(
+        payload: string | object | Buffer, 
+        options: SignOptions | undefined
+    ): string;
 }

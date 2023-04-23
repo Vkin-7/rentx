@@ -4,4 +4,5 @@ export interface IAuthenticatedUserDTO {
         email: string;
     },
     token: string;
+    refresh_token: string;
 }

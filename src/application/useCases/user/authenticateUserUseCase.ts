@@ -18,14 +18,14 @@ export class AuthenticateUserUseCase {
         private authProvider: IAuthProvider,
     ) {}
 
-    async execute(data: IAuthenticateUserDTO): Promise<IAuthenticatedUserDTO | null> {
-        const user = await this.userRepository.findByEmail(data.email);
+    async execute({ email, password }: IAuthenticateUserDTO): Promise<IAuthenticatedUserDTO | null> {
+        const user = await this.userRepository.findByEmail(email);
 
         if(!user) {
             throw new AppError('Email or password incorrect!');
         }
 
-        const passwordMatch = this.hashProvider.compareHash(data.password, user.password);
+        const passwordMatch = this.hashProvider.compareHash(password, user.password);
 
         if(!passwordMatch) {
             throw new AppError('Email or password incorrect!');
@@ -33,7 +33,10 @@ export class AuthenticateUserUseCase {
 
         const token = this.authProvider.generateToken({}, {
             subject: user.id,
-            expiresIn: '1d' 
+        });
+
+        const refresh_token = this.authProvider.generateRefreshToken({ email }, {
+            subject: user.id,
         });
 
         return {
@@ -41,7 +44,8 @@ export class AuthenticateUserUseCase {
                 name: user.name,
                 email: user.email
             },
-            token
+            token,
+            refresh_token
         };
 
     }
