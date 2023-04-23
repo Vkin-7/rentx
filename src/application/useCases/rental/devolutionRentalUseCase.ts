@@ -39,7 +39,7 @@ export class DevolutionRentalUseCase {
         rental.total = this.calculateTotal(
             rental.start_date,
             rental.expected_return_date,
-            (car?.final_amount || 0),
+            (car?.fine_amount || 0),
             (car?.daily_rate || 0)
         );
 
@@ -67,7 +67,7 @@ export class DevolutionRentalUseCase {
     private calculateTotal(
         start_date: Date,
         expected_return_date: Date, 
-        final_amount: number,
+        fine_amount: number,
         daily_rate: number
     ): number {
         const delayDays = this.dateProvider.compareInDays(
@@ -80,7 +80,7 @@ export class DevolutionRentalUseCase {
         let total = 0;
 
         if (delayDays > 0) {
-            const calculate_fine = delayDays * final_amount;
+            const calculate_fine = delayDays * fine_amount;
             total = calculate_fine;
         }
 

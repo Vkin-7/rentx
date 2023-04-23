@@ -19,7 +19,7 @@ export class CarsRepositoryInMemory implements ICarsRepository {
             data.description,
             data.daily_rate,
             data.license_plate,
-            data.final_amount,
+            data.fine_amount,
             data.brand,
             data.category_id,
             new Date(),

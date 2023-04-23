@@ -21,7 +21,7 @@ export class Car extends BaseEntity {
     public license_plate: string;
 
     @Column('decimal')
-    public final_amount: number;
+    public fine_amount: number;
 
     @Column('varchar')
     public brand: string;
@@ -46,7 +46,7 @@ export class Car extends BaseEntity {
         _description: string,
         _daily_rate: number,
         _license_plate: string,
-        _final_amount: number,
+        _fine_amount: number,
         _brand: string,
         _category_id: string,
         // _available?: boolean,
@@ -60,7 +60,7 @@ export class Car extends BaseEntity {
         this.description = _description;
         this.daily_rate = _daily_rate;
         this.license_plate = _license_plate;
-        this.final_amount = _final_amount;
+        this.fine_amount = _fine_amount;
         this.brand = _brand;
         this.category_id = _category_id;
 

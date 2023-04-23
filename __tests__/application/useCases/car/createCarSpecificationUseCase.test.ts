@@ -25,7 +25,7 @@ describe('Create Car Specification', () => {
             name: 'car name',
             brand: 'car brand',
             description: 'car description',
-            final_amount: 0,
+            fine_amount: 0,
             daily_rate: 0,
             license_plate: '000-AAAA',
             category_id: 'category id'

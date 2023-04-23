@@ -18,7 +18,7 @@ describe('List Cars', () => {
             'description': 'car description',
             'daily_rate': 110,
             'license_plate': 'DEF-1234',
-            'final_amount': 100,
+            'fine_amount': 100,
             'brand': 'car brand',
             'category_id': 'category_id'
         });
@@ -34,7 +34,7 @@ describe('List Cars', () => {
             'description': 'car description',
             'daily_rate': 110,
             'license_plate': 'DEF-1234',
-            'final_amount': 100,
+            'fine_amount': 100,
             'brand': 'car brand',
             'category_id': 'category_id'
         });
@@ -53,7 +53,7 @@ describe('List Cars', () => {
             'description': 'car description',
             'daily_rate': 110,
             'license_plate': 'DEF-1234',
-            'final_amount': 100,
+            'fine_amount': 100,
             'brand': 'car brand',
             'category_id': 'category_id'
         });
@@ -72,7 +72,7 @@ describe('List Cars', () => {
             'description': 'car description',
             'daily_rate': 110,
             'license_plate': 'DEF-1234',
-            'final_amount': 100,
+            'fine_amount': 100,
             'brand': 'car brand',
             'category_id': 'category_id'
         });
