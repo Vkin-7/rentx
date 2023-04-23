@@ -9,6 +9,7 @@ import { specificationsRoutes } from './specifications.routes';
 import { usersRoutes } from './users.routes';
 import { carsRoutes } from './cars.routes';
 import { rentalsRoutes } from './rentals.routes';
+import { accountsRoutes } from './accounts.routes';
 
 export const router = Router();
 
@@ -21,3 +22,4 @@ router.use('/users', usersRoutes);
 router.use('/cars', carsRoutes);
 router.use('/sessions', authenticateRoutes);
 router.use('/rentals', rentalsRoutes);
+router.use('/accounts', accountsRoutes);

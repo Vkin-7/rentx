@@ -31,6 +31,9 @@ import { IAuthProvider } from './providers/interfaces/IAuthProvider';
 import { IDateProvider } from './providers/interfaces/IDateProvider';
 import { DateProvider } from './providers/dateProvider';
 
+import { IMailProvider } from './providers/interfaces/IMailProvider';
+import { MailProvider } from './providers/mailProvider';
+
 
 
 import { IEnsureAuthenticated } from '@Infra/http/middlewares/interfaces/IEnsureAuthenticated';
@@ -90,6 +93,11 @@ container.registerSingleton<IHashProvider>(
 container.registerSingleton<IDateProvider>(
     'DateProvider',
     DateProvider
+);
+
+container.registerInstance<IMailProvider>(
+    'MailProvider',
+    new MailProvider()
 );
 
 
