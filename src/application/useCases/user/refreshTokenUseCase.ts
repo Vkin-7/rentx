@@ -4,6 +4,7 @@ import { inject, injectable } from 'tsyringe';
 import { IUsersRepository } from '@Infra/data/repositories/interfaces/IUsersRepository';
 import { AppError } from '@Shared/errors/AppError';
 import { IAuthProvider } from '@Shared/providers/interfaces/IAuthProvider';
+import { IRefreshTokenResponseDTO } from '@DTO/user/IRefreshTokenResponseDTO';
 
 @injectable()
 export class RefreshTokenUseCase {
@@ -14,7 +15,7 @@ export class RefreshTokenUseCase {
         private authProvider: IAuthProvider
     ) {}
 
-    async execute(token: string): Promise<string> {
+    async execute(token: string): Promise<IRefreshTokenResponseDTO> {
         const { email, sub } = verify(token, process.env.REFRESH_TOKEN_JWT_KEY) as { email: string; sub: string };
 
         if (!sub || !email) {
@@ -27,10 +28,17 @@ export class RefreshTokenUseCase {
             throw new AppError('Invalid refresh token');
         }
 
+        const newToken = this.authProvider.generateToken({}, {
+            subject: sub
+        });
+
         const refresh_token = this.authProvider.generateRefreshToken({ email }, {
             subject: sub
         });
 
-        return refresh_token;
+        return {
+            token: newToken,
+            refresh_token
+        };
     }
 }

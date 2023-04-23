@@ -9,7 +9,7 @@ export class AuthProvider implements IAuthProvider {
             process.env.TOKEN_JWT_KEY, 
             { 
                 ...options,
-                expiresIn: '5m'                 
+                expiresIn: '15m'                 
             }
         );
     }
