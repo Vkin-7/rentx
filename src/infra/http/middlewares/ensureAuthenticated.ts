@@ -20,7 +20,7 @@ export class EnsureAuthenticated implements IEnsureAuthenticated {
     
             const [, token] = authHeader.split(' ');
     
-            const { sub: userId } = jwt.verify(token, process.env.SECRET_JWT_KEY) as IEnsureAuthenticatedPayload;
+            const { sub: userId } = jwt.verify(token, process.env.REFRESH_TOKEN_JWT_KEY) as IEnsureAuthenticatedPayload;
             
             const userRepository = new UsersRepository();
 
