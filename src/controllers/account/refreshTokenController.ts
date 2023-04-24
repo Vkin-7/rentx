@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 
-import { RefreshTokenUseCase } from '@Application/useCases/user/refreshTokenUseCase';
+import { RefreshTokenUseCase } from '@Application/useCases/account/refreshTokenUseCase';
 
 export class RefreshTokenController {
     async handle(request: Request, response: Response): Promise<Response> {

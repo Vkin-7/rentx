@@ -2,7 +2,6 @@ import { Router } from 'express';
 import swaggerUI from 'swagger-ui-express';
 
 import swaggerConfig from '../../../swagger.json';
-import { authenticateRoutes } from './authenticate.routes';
 
 import { categoriesRoutes } from './categories.routes';
 import { specificationsRoutes } from './specifications.routes';
@@ -20,6 +19,5 @@ router.use('/categories', categoriesRoutes);
 router.use('/specifications', specificationsRoutes);
 router.use('/users', usersRoutes);
 router.use('/cars', carsRoutes);
-router.use('/sessions', authenticateRoutes);
 router.use('/rentals', rentalsRoutes);
 router.use('/accounts', accountsRoutes);

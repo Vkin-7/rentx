@@ -1,4 +1,4 @@
-import { AuthenticateUserUseCase } from '@UseCases/user/authenticateUserUseCase';
+import { AuthenticateUserUseCase } from '@Application/useCases/account/authenticateUserUseCase';
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 

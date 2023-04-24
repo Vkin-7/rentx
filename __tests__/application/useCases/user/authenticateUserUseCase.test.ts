@@ -2,7 +2,7 @@ import 'reflect-metadata';
 
 import * as dotenv from 'dotenv';
 
-import { AuthenticateUserUseCase } from '@Application/useCases/user/authenticateUserUseCase';
+import { AuthenticateUserUseCase } from '@Application/useCases/account/authenticateUserUseCase';
 import { CreateUserUseCase } from '@Application/useCases/user/createUserUseCase';
 import { ICreateUserDTO } from '@DTO/user/ICreateUserDTO';
 import { AuthProvider } from '@Shared/providers/authProvider';
