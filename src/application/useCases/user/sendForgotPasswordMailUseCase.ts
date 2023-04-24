@@ -1,5 +1,6 @@
 import { inject, injectable } from 'tsyringe';
 import { randomUUID } from 'node:crypto';
+import { resolve } from 'node:path';
 
 import { IUsersRepository } from '@Infra/data/repositories/interfaces/IUsersRepository';
 import { AppError } from '@Shared/errors/AppError';
@@ -24,13 +25,20 @@ export class SendForgotPasswordMailUseCase {
             throw new AppError('User does not exists!');
         }
 
-        const token = randomUUID();
-        const expires_date = this.dateProvider.addHours(3);
+        const templatePath = resolve('./src/shared/views/templateEmails/forgotPassword.hbs');
+
+        const token = this.mailProvider.generateEmailToken();
+
+        const variables = {
+            name: user.name,
+            link: `${process.env.FORGOT_MAIL_URL}${token}`
+        };
 
         await this.mailProvider.sendMail(
             email as MailTemplateString, 
             'Recuperação de senha', 
-            `O link para o reset é ${token}/${expires_date}`
+            variables,
+            templatePath
         );
     }
 }
