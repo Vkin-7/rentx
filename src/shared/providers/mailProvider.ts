@@ -53,9 +53,9 @@ export class MailProvider implements IMailProvider {
         }
     }
 
-    generateEmailToken(options?: jwt.SignOptions): string {
+    generateEmailToken(payload: string | object | Buffer, options?: jwt.SignOptions): string {
         return jwt.sign(
-            {}, 
+            payload, 
             process.env.EMAIL_TOKEN_KEY, 
             { 
                 ...options,

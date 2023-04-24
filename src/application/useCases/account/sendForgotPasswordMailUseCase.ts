@@ -1,5 +1,4 @@
 import { inject, injectable } from 'tsyringe';
-import { randomUUID } from 'node:crypto';
 import { resolve } from 'node:path';
 
 import { IUsersRepository } from '@Infra/data/repositories/interfaces/IUsersRepository';
@@ -27,7 +26,10 @@ export class SendForgotPasswordMailUseCase {
 
         const templatePath = resolve('./src/shared/views/templateEmails/forgotPassword.hbs');
 
-        const token = this.mailProvider.generateEmailToken();
+        const token = this.mailProvider.generateEmailToken({
+            id: user.id,
+            email: user.email
+        });
 
         const variables = {
             name: user.name,
