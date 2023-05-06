@@ -11,7 +11,7 @@ import { HashProvider } from '@Shared/providers/hashProvider';
 let dataSource: DataSource;
 const database = new Database();
 const hashProvider = new HashProvider();
-let token = '';
+let refresh_token = '';
 
 describe('Create category controller', () => {
 
@@ -35,7 +35,7 @@ describe('Create category controller', () => {
                 password: 'admin'
             });
         
-        token = responseToken.body.token;
+        refresh_token = responseToken.body.refresh_token;
     });
 
     afterAll(async () => {
@@ -50,7 +50,7 @@ describe('Create category controller', () => {
                 description: 'Category supertest'
             })
             .set({
-                Authorization: `Bearer ${token}` 
+                Authorization: `Bearer ${refresh_token}` 
             });
 
         expect(response.status).toBe(201);
@@ -65,7 +65,7 @@ describe('Create category controller', () => {
                 description: 'Category supertest'
             })
             .set({
-                Authorization: `Bearer ${token}` 
+                Authorization: `Bearer ${refresh_token}` 
             });
 
         expect(response.status).toBe(400);
