@@ -34,6 +34,9 @@ import { DateProvider } from './providers/dateProvider';
 import { IMailProvider } from './providers/interfaces/IMailProvider';
 import { MailProvider } from './providers/mailProvider';
 
+import { IStorageProvider } from './providers/interfaces/IStorageProvider';
+import { LocalStorageProvider } from './providers/localStorageProvider';
+
 
 
 import { IEnsureAuthenticated } from '@Infra/http/middlewares/interfaces/IEnsureAuthenticated';
@@ -42,9 +45,6 @@ import { EnsureAuthenticated } from '@Infra/http/middlewares/ensureAuthenticated
 import { IEnsureAdmin } from '@Infra/http/middlewares/interfaces/IEnsureAdmin';
 import { EnsureAdmin } from '@Infra/http/middlewares/ensureAdmin';
 
-
-
-import { InternalFile } from './utils/file';
 
 
 //REPOSITORIES
@@ -100,6 +100,11 @@ container.registerInstance<IMailProvider>(
     new MailProvider()
 );
 
+container.registerSingleton<IStorageProvider>(
+    'StorageProvider',
+    LocalStorageProvider
+);
+
 
 
 // AUTHENTICATION
@@ -112,10 +117,4 @@ container.registerSingleton<IEnsureAuthenticated>(
 container.registerSingleton<IEnsureAdmin>(
     'EnsureAdmin',
     EnsureAdmin
-);
-
-// Utils
-container.registerSingleton(
-    'InternalFile',
-    InternalFile
 );

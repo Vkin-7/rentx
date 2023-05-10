@@ -8,7 +8,7 @@ import { CreateCarController } from '@Controllers/car/createCarController';
 import { ListAvailableCarsController } from '@Controllers/car/listAvailableCarsController';
 import { CreateCarSpecificationController } from '@Controllers/car/createCarSpecificationController';
 import { UploadCarImagesController } from '@Controllers/car/uploadCarImagesController';
-import { UploadService } from '@Services/upload';
+import uploadConfig from '@Services/upload';
 
 export const carsRoutes = Router();
 
@@ -19,9 +19,8 @@ const uploadCarImagesController = new UploadCarImagesController();
 
 const ensureAuthenticated =  new EnsureAuthenticated();
 const ensureAdmin = new EnsureAdmin();
-const uploadService = new UploadService();
 
-const upload = multer(uploadService.upload('./tmp/cars'));
+const upload = multer(uploadConfig);
 
 
 carsRoutes.post(

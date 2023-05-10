@@ -1,11 +1,10 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { inject, injectable } from 'tsyringe';
-import path from 'node:path';
 
 import { IUpdateUserAvatarDTO } from '@DTO/user/IUpdateUserAvatarDTO';
 import { IUsersRepository } from '@Repositories/interfaces/IUsersRepository';
 
-import { InternalFile } from '@Shared/utils/file';
+import { IStorageProvider } from '@Shared/providers/interfaces/IStorageProvider';
 
 
 @injectable()
@@ -13,16 +12,18 @@ export class UpdateUserAvatarUseCase {
     constructor(
         @inject('UsersRepository')
         private usersRepository: IUsersRepository,
-        @inject('InternalFile')
-        private internalFile: InternalFile
+        @inject('StorageProvider')
+        private storageProvider: IStorageProvider
     ) {}
 
     async execute(data: IUpdateUserAvatarDTO): Promise<void> {
         const user = await this.usersRepository.findById(data.userId);
 
         if (user?.avatar) {
-            await this.internalFile.delete(path.resolve('./tmp/avatar', user?.avatar));
+            await this.storageProvider.delete(data.avatarFile, 'avatar');
         }
+
+        await this.storageProvider.save(data.avatarFile, 'avatar');
 
         user!.avatar = data.avatarFile;
 
