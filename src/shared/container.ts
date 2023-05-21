@@ -36,7 +36,7 @@ import { MailProvider } from './providers/mailProvider';
 
 import { IStorageProvider } from './providers/interfaces/IStorageProvider';
 import { LocalStorageProvider } from './providers/localStorageProvider';
-
+import { S3StorageProvider } from './providers/s3StorageProvider';
 
 
 import { IEnsureAuthenticated } from '@Infra/http/middlewares/interfaces/IEnsureAuthenticated';
@@ -100,9 +100,14 @@ container.registerInstance<IMailProvider>(
     new MailProvider()
 );
 
+const diskStorage = {
+    local: LocalStorageProvider,
+    s3: S3StorageProvider
+};
+
 container.registerSingleton<IStorageProvider>(
     'StorageProvider',
-    LocalStorageProvider
+    diskStorage[process.env.DISK]
 );
 
 

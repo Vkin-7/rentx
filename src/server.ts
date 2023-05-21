@@ -1,10 +1,12 @@
 import 'reflect-metadata';
+
+import 'dotenv/config';
+
 import '@Shared/container';
 
-import * as dotenv from 'dotenv';
 import { Server } from '@Infra/http/server-express';
 
-dotenv.config();
+
 
 const server = new Server();
 

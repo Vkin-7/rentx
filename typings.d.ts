@@ -8,5 +8,12 @@ declare namespace NodeJS {
         EMAIL_TOKEN_KEY: string;
         BASE_URL: string;
         FORGOT_MAIL_URL: string;
+
+        AWS_ACCESS_KEY_ID: string;
+        AWS_SECRET_ACCESS_KEY: string;
+        AWS_BUCKET: string;
+        AWS_BUCKET_REGION: string;
+
+        DISK: 'local' | 's3';
     }
 }
