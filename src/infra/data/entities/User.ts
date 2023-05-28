@@ -1,6 +1,8 @@
 import { Column, Entity } from 'typeorm';
 import { BaseEntity } from './abstracts/BaseEntity';
 
+import { Expose } from 'class-transformer';
+
 @Entity('user')
 export class User extends BaseEntity {
     @Column('text')
@@ -20,6 +22,18 @@ export class User extends BaseEntity {
 
     @Column('text')
     public avatar?: string;
+
+    @Expose({ name: 'avatar_url' })
+    public avatar_url(): string {
+        switch (process.env.DISK) {
+        case 'local':
+            return `${process.env.BASE_URL}/avatar/${this.avatar}}`;
+        case 's3':
+            return `${process.env.AWS_BUCKET_URL}/avatar/${this.avatar}}`;
+        default:
+            return '';
+        }
+    }
 
 
     constructor(

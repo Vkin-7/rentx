@@ -24,8 +24,8 @@ export class S3StorageProvider implements IStorageProvider {
 
         try {
             const command = new PutObjectCommand({
-                Bucket: `${process.env.AWS_BUCKET}`,
-                Key: file,
+                Bucket: process.env.AWS_BUCKET,
+                Key: `${folder}/${file}`,
                 ACL: 'public-read',
                 Body: fileContent,
                 ContentType: contentType,
@@ -44,7 +44,7 @@ export class S3StorageProvider implements IStorageProvider {
     async delete(file: string, folder: string): Promise<void> {
         const command = new DeleteObjectCommand({
             Bucket: `${process.env.AWS_BUCKET}`,
-            Key: file,
+            Key: `${folder}/${file}`,
         });
 
         try {
