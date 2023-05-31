@@ -5,10 +5,10 @@ import fs from 'node:fs';
 import jwt from 'jsonwebtoken';
 
 
-import { IMailProvider, MailTemplateString } from './interfaces/IMailProvider';
+import { IMailProvider, MailTemplateString } from '../interfaces/IMailProvider';
 
 @injectable()
-export class MailProvider implements IMailProvider {
+export class EtherealMailProvider implements IMailProvider {
     private client: Transporter | undefined = undefined;
 
     constructor() {

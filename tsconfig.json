@@ -45,6 +45,9 @@
             ],
             "@Tests/*": [
                 "__tests__/*"
+            ],
+            "@CrossCutting/*": [
+                "src/crossCutting/*"
             ]
         },
         "resolveJsonModule": true,

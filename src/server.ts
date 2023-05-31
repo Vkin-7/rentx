@@ -2,7 +2,7 @@ import 'reflect-metadata';
 
 import 'dotenv/config';
 
-import '@Shared/container';
+import '@CrossCutting/ioc/index';
 
 import { Server } from '@Infra/http/server-express';
 
