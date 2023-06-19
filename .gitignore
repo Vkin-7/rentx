@@ -1,11 +1,13 @@
 # Enviroment
 .env
+data-source.ts
 
 # IDE
 .vscode
 
 # Temporary data
-tmp
+tmp/*
+!tmp/.gitkeep
 
 # Tests
 coverage
